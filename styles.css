@@ -25,13 +25,7 @@ section {
     max-width: 800px;
 }
 
-/* Стили форм регистрации, входа и админ консоли */
-#auth-container, #admin-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
+/* Стили форм */
 form {
     display: flex;
     flex-direction: column;
@@ -42,7 +36,7 @@ label {
     margin-top: 10px;
 }
 
-input {
+input, textarea {
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
@@ -63,37 +57,43 @@ button:hover {
     background-color: #218838;
 }
 
-/* Галерея */
-.gallery {
+/* Профиль */
+#profile-info {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.gallery img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-    transition: transform 0.3s;
+/* Форум */
+#posts {
+    margin-top: 20px;
 }
 
-.gallery img:hover {
-    transform: scale(1.1);
+.post {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Админ панель */
+#admin-container {
+    margin-top: 20px;
+}
+
+#userList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#userList li {
+    margin-bottom: 10px;
 }
 
 /* Адаптивность */
 @media (max-width: 600px) {
-    #auth-container, #admin-container {
-        flex-direction: column;
+    form {
         align-items: center;
-    }
-
-    .gallery {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .gallery img {
-        max-width: 100%;
     }
 }
