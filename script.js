@@ -1,33 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register');
     const loginForm = document.getElementById('login');
-    const feedbackForm = document.getElementById('feedbackForm');
-    const blockUserForm = document.getElementById('blockUserForm');
-    const userList = document.getElementById('userList');
+    const profileSection = document.getElementById('profile');
+    const profileUsername = document.getElementById('profile-username');
+    const profilePhoto = document.getElementById('profile-photo');
+    const profilePhotoDisplay = document.getElementById('profile-photo-display');
+    const postForm = document.getElementById('postForm');
+    const postsContainer = document.getElementById('posts');
     const adminSection = document.getElementById('admin');
-    const adminLink = document.getElementById('admin-link');
+    const userList = document.getElementById('userList');
 
-    // Функция для проверки, является ли пользователь администратором
-    function checkAdminAccess() {
+    // Проверка аутентификации и отображение секций
+    function checkAuth() {
         const currentUser = localStorage.getItem('currentUser');
-        if (currentUser === 'Admin') {
-            adminSection.style.display = 'block';
+        if (currentUser) {
+            profileSection.style.display = 'block';
+            profileUsername.textContent = currentUser;
+            document.getElementById('signin').style.display = 'none';
+            if (currentUser === 'Admin') {
+                adminSection.style.display = 'block';
+            }
+            updatePosts();
+            updateUserList();
         } else {
+            profileSection.style.display = 'none';
             adminSection.style.display = 'none';
         }
-    }
-
-    // Функция для обновления списка пользователей
-    function updateUserList() {
-        userList.innerHTML = '';
-        const users = Object.keys(localStorage);
-        users.forEach(user => {
-            if (user !== 'currentUser') {
-                const li = document.createElement('li');
-                li.textContent = user + (localStorage.getItem(user) === 'blocked' ? ' (заблокирован)' : '');
-                userList.appendChild(li);
-            }
-        });
     }
 
     // Регистрация
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(username, password);
         alert('Регистрация успешна! Вы можете войти теперь.');
         registerForm.reset();
-        updateUserList();
     });
 
     // Вход
@@ -59,20 +56,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (username === 'Admin' && password === 'Admin') {
             localStorage.setItem('currentUser', 'Admin');
             alert('Вы вошли как администратор.');
-            checkAdminAccess();
-        } else if (storedPassword === 'blocked') {
-            alert('Ваш аккаунт заблокирован.');
+            checkAuth();
         } else if (storedPassword === password) {
             localStorage.setItem('currentUser', username);
             alert(`Добро пожаловать, ${username}!`);
+            checkAuth();
         } else {
             alert('Неверное имя пользователя или пароль.');
         }
     });
 
-    // Отправка отзыва
-    feedbackForm.addEventListener('submit', (event) => {
+    // Профиль
+    profilePhoto.addEventListener('change', () => {
+        const file = profilePhoto.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                profilePhotoDisplay.src = reader.result;
+                profilePhotoDisplay.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Форум
+    postForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const message = document.get
+        const title = document.getElementById('post-title').value;
+        const message = document.getElementById('post-message').value;
+        const currentUser = localStorage.getItem('currentUser');
+
+        const post = {
+            title: title,
+            message
