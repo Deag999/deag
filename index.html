@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Мій перший веб-сайт</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой улучшенный сайт</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Привіт, світ!</h1>
-    <p>Це моя перша веб-сторінка.</p>
+    <header>
+        <h1>Добро пожаловать на мой сайт!</h1>
+        <nav>
+            <a href="#form">Форма</a>
+            <a href="#gallery">Галерея</a>
+        </nav>
+    </header>
+    <section id="form">
+        <h2>Оставьте свой отзыв</h2>
+        <form id="feedbackForm">
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="message">Сообщение:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+    <section id="gallery">
+        <h2>Галерея изображений</h2>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/150" alt="Placeholder 1">
+            <img src="https://via.placeholder.com/150" alt="Placeholder 2">
+            <img src="https://via.placeholder.com/150" alt="Placeholder 3">
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Мой сайт</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
