@@ -3,17 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой улучшенный сайт</title>
+    <title>Мой сайт с регистрацией и админ-консолью</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Добро пожаловать на мой сайт!</h1>
         <nav>
+            <a href="#signin">Вход / Регистрация</a>
             <a href="#form">Форма</a>
             <a href="#gallery">Галерея</a>
+            <a href="#admin" id="admin-link">Админ Консоль</a>
         </nav>
     </header>
+
+    <section id="signin">
+        <h2>Вход / Регистрация</h2>
+        <div id="auth-container">
+            <div id="login-form">
+                <h3>Вход</h3>
+                <form id="login">
+                    <label for="login-username">Имя пользователя:</label>
+                    <input type="text" id="login-username" name="username" required>
+                    <label for="login-password">Пароль:</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <button type="submit">Войти</button>
+                </form>
+            </div>
+            <div id="register-form">
+                <h3>Регистрация</h3>
+                <form id="register">
+                    <label for="register-username">Имя пользователя:</label>
+                    <input type="text" id="register-username" name="username" required>
+                    <label for="register-password">Пароль:</label>
+                    <input type="password" id="register-password" name="password" required>
+                    <button type="submit">Регистрация</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section id="form">
         <h2>Оставьте свой отзыв</h2>
         <form id="feedbackForm">
@@ -24,6 +53,7 @@
             <button type="submit">Отправить</button>
         </form>
     </section>
+
     <section id="gallery">
         <h2>Галерея изображений</h2>
         <div class="gallery">
@@ -32,9 +62,25 @@
             <img src="https://via.placeholder.com/150" alt="Placeholder 3">
         </div>
     </section>
+
+    <section id="admin" style="display: none;">
+        <h2>Административная консоль</h2>
+        <div id="admin-container">
+            <h3>Управление пользователями</h3>
+            <form id="blockUserForm">
+                <label for="block-username">Имя пользователя для блокировки:</label>
+                <input type="text" id="block-username" name="username" required>
+                <button type="submit">Заблокировать</button>
+            </form>
+            <h3>Список пользователей</h3>
+            <ul id="userList"></ul>
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2024 Мой сайт</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
