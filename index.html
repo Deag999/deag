@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт с регистрацией и админ-консолью</title>
+    <title>Мой сложный сайт</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,9 +11,9 @@
         <h1>Добро пожаловать на мой сайт!</h1>
         <nav>
             <a href="#signin">Вход / Регистрация</a>
-            <a href="#form">Форма</a>
-            <a href="#gallery">Галерея</a>
-            <a href="#admin" id="admin-link">Админ Консоль</a>
+            <a href="#profile">Профиль</a>
+            <a href="#forum">Форум</a>
+            <a href="#admin">Админ Панель</a>
         </nav>
     </header>
 
@@ -43,36 +43,32 @@
         </div>
     </section>
 
-    <section id="form">
-        <h2>Оставьте свой отзыв</h2>
-        <form id="feedbackForm">
-            <label for="name">Ваше имя:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="message">Сообщение:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Отправить</button>
-        </form>
-    </section>
-
-    <section id="gallery">
-        <h2>Галерея изображений</h2>
-        <div class="gallery">
-            <img src="https://via.placeholder.com/150" alt="Placeholder 1">
-            <img src="https://via.placeholder.com/150" alt="Placeholder 2">
-            <img src="https://via.placeholder.com/150" alt="Placeholder 3">
+    <section id="profile" style="display: none;">
+        <h2>Мой профиль</h2>
+        <div id="profile-info">
+            <p>Имя пользователя: <span id="profile-username"></span></p>
+            <p>Загрузите свою фотографию:</p>
+            <input type="file" id="profile-photo">
+            <img id="profile-photo-display" alt="Ваше фото" style="display:none; max-width: 200px;">
         </div>
     </section>
 
+    <section id="forum">
+        <h2>Форум</h2>
+        <form id="postForm">
+            <label for="post-title">Название:</label>
+            <input type="text" id="post-title" name="title" required>
+            <label for="post-message">Сообщение:</label>
+            <textarea id="post-message" name="message" required></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+        <div id="posts"></div>
+    </section>
+
     <section id="admin" style="display: none;">
-        <h2>Административная консоль</h2>
+        <h2>Админ Панель</h2>
         <div id="admin-container">
             <h3>Управление пользователями</h3>
-            <form id="blockUserForm">
-                <label for="block-username">Имя пользователя для блокировки:</label>
-                <input type="text" id="block-username" name="username" required>
-                <button type="submit">Заблокировать</button>
-            </form>
-            <h3>Список пользователей</h3>
             <ul id="userList"></ul>
         </div>
     </section>
